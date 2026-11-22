@@ -43,3 +43,10 @@ AUC is the share of failing bank-quarters that the score ranks above surviving o
     python -m credit_risk.scorecard.week3
 
 Tests: `make test` (155 passing at this stage).
+
+## Week 4 update: test window end date
+
+- The out-of-time test window now ends on 2022 Q3 (30 September 2022), not on 2022 by year.
+- Reason: the 2022 Q4 quarter belongs to the 2023 case study, so the two windows must not overlap.
+- Week 3 never scored the test set, so the change does not affect any Week 3 result.
+- The full record of this and earlier split decisions is in `reports/model_documentation.md`, section 3.

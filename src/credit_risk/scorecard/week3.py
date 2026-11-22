@@ -64,7 +64,7 @@ def format_week3(results: Week3Results) -> str:
     lines = ["Week 3 (Module B part 1), blueprint split. Test set not scored.", ""]
     lines.append("Sets and event counts:")
     for c in results.counts:
-        lines.append(f"  {c.name:<12} {c.start_year} to {c.end_year}: {c.bank_quarters} bank-quarters, {c.events} events")
+        lines.append(f"  {c.label:<34} {c.bank_quarters} bank-quarters, {c.events} events")
     lines += [
         "",
         f"Single-ratio baseline ({results.baseline_ratio}): threshold {results.baseline_threshold:.4f}, "
