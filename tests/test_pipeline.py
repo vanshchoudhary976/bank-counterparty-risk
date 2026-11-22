@@ -18,8 +18,11 @@ def _synthetic_observations():
                     report_date=date(year, 12, 31),
                     features={
                         "equity_to_assets": (0.05 + 0.001 * (cert % 5)) if failing else (0.10 + 0.002 * (cert % 7)),
-                        "loans_to_deposits": 0.70 + 0.01 * (cert % 4),
+                        "tier1_leverage": (0.05 + 0.001 * (cert % 5)) if failing else (0.10 + 0.002 * (cert % 7)),
+                        "allowance_to_loans": 0.01 + 0.001 * (cert % 4),
                         "roa_annualised": 0.005 + 0.0005 * (cert % 3),
+                        "efficiency_ratio": 0.60 + 0.01 * (cert % 6),
+                        "loans_to_deposits": 0.70 + 0.01 * (cert % 4),
                     },
                     label=1 if failing else 0,
                 )

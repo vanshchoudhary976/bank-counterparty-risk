@@ -16,7 +16,11 @@ SEC_COMPANYFACTS_URL = "https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}
 # PROVISIONAL field names. Each one must be confirmed in docs/data_dictionary.md
 # before any ratio uses it. sql/02_load_fdic.sql refers to these same names.
 FDIC_INSTITUTION_FIELDS: tuple[str, ...] = ("CERT", "NAME", "STALP", "ACTIVE")
-FDIC_FINANCIAL_FIELDS: tuple[str, ...] = ("CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC")
+# Week 3 additions for the six-ratio scorecard: RBC1AAJ (Tier 1 leverage, percent), LNLSRES (allowance for loan
+# and lease losses, $ thousands), EEFFR (efficiency ratio, percent). Units to be confirmed on raw data.
+FDIC_FINANCIAL_FIELDS: tuple[str, ...] = (
+    "CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC", "RBC1AAJ", "LNLSRES", "EEFFR",
+)
 FDIC_FAILURE_FIELDS: tuple[str, ...] = ("CERT", "NAME", "FAILDATE")
 
 _EMAIL_PATTERN = re.compile(r"[^@\s]+@[^@\s]+\.[^@\s]+")

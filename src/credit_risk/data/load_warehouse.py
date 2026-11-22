@@ -82,6 +82,8 @@ def load_all(paths: ProjectPaths, db_path: Path | None = None) -> list[CheckResu
             warehouse.record_load(f"stg_{endpoint}", source.file.name, source.sha256, source.total, staged)
             totals[endpoint] = source.total
         warehouse.build_typed_tables(paths.sql_dir / "02_load_fdic.sql")
+        warehouse.apply_sql_file(paths.sql_dir / "03_ratios.sql")
+        warehouse.apply_sql_file(paths.sql_dir / "04_scorecard_inputs.sql")
         sec_ciks = load_sec(warehouse, sec_store)
         return DataChecks(warehouse.con).run_all(totals, sec_ciks=sec_ciks or None)
     finally:

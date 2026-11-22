@@ -27,6 +27,16 @@ SELECT
     TRY_CAST(NETINC AS DOUBLE)
 FROM stg_financials;
 
+DELETE FROM bank_capital_efficiency;
+INSERT INTO bank_capital_efficiency (cert, report_date, tier1_leverage_pct, allowance_for_loans, efficiency_ratio_pct)
+SELECT
+    TRY_CAST(CERT AS INTEGER),
+    TRY_STRPTIME(REPDTE, '%Y%m%d')::DATE,
+    TRY_CAST(RBC1AAJ AS DOUBLE),
+    TRY_CAST(LNLSRES AS DOUBLE),
+    TRY_CAST(EEFFR AS DOUBLE)
+FROM stg_financials;
+
 -- The FDIC returns FAILDATE as M/D/YYYY (for example 5/28/1934). Some other rows may use ISO dates,
 -- so both formats are tried. A value that matches neither becomes NULL and fails the NOT NULL constraint.
 -- CERT is NULL for early failures, which is expected and is reported by the checks, not treated as an error.

@@ -68,8 +68,9 @@ def test_failure_dates_accept_fdic_slash_format(warehouse):
     warehouse.load_staging("institutions", INSTITUTIONS, ["CERT", "NAME", "STALP", "ACTIVE"])
     warehouse.load_staging(
         "financials",
-        [{"CERT": "1001", "REPDTE": "20231231", "ASSET": "1", "EQTOT": "1", "LNLSNET": "1", "DEP": "1", "NETINC": "1"}],
-        ["CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC"],
+        [{"CERT": "1001", "REPDTE": "20231231", "ASSET": "1", "EQTOT": "1", "LNLSNET": "1", "DEP": "1", "NETINC": "1",
+          "RBC1AAJ": "1", "LNLSRES": "1", "EEFFR": "1"}],
+        ["CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC", "RBC1AAJ", "LNLSRES", "EEFFR"],
     )
     warehouse.load_staging(
         "failures",
@@ -92,8 +93,9 @@ def test_unparseable_report_date_fails_loudly(warehouse):
     warehouse.load_staging("institutions", INSTITUTIONS, ["CERT", "NAME", "STALP", "ACTIVE"])
     warehouse.load_staging(
         "financials",
-        [{"CERT": "1001", "REPDTE": "2023-12-31", "ASSET": "1", "EQTOT": "1", "LNLSNET": "1", "DEP": "1", "NETINC": "1"}],
-        ["CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC"],
+        [{"CERT": "1001", "REPDTE": "2023-12-31", "ASSET": "1", "EQTOT": "1", "LNLSNET": "1", "DEP": "1", "NETINC": "1",
+          "RBC1AAJ": "1", "LNLSRES": "1", "EEFFR": "1"}],
+        ["CERT", "REPDTE", "ASSET", "EQTOT", "LNLSNET", "DEP", "NETINC", "RBC1AAJ", "LNLSRES", "EEFFR"],
     )
     warehouse.load_staging("failures", FAILURES, ["CERT", "NAME", "FAILDATE"])
     with pytest.raises(duckdb.Error):

@@ -10,14 +10,21 @@ from __future__ import annotations
 from datetime import date
 from typing import Mapping
 
-RATIO_COLUMNS = ("equity_to_assets", "loans_to_deposits", "roa_annualised")
+RATIO_COLUMNS = (
+    "equity_to_assets",
+    "tier1_leverage",
+    "allowance_to_loans",
+    "roa_annualised",
+    "efficiency_ratio",
+    "loans_to_deposits",
+)
 
 
 def load_panel(con) -> tuple[list[tuple[int, date, dict]], dict[int, date]]:
     """Return (rows, failures). rows are (cert, report_date, features) for every bank-quarter."""
-    select_list = ", ".join(f"r.{c}" for c in RATIO_COLUMNS)
+    select_list = ", ".join(f"s.{c}" for c in RATIO_COLUMNS)
     rows = con.execute(
-        f"SELECT r.cert, r.report_date, {select_list} FROM bank_ratios r ORDER BY r.cert, r.report_date"
+        f"SELECT s.cert, s.report_date, {select_list} FROM scorecard_inputs s ORDER BY s.cert, s.report_date"
     ).fetchall()
     panel = [
         (cert, report_date, dict(zip(RATIO_COLUMNS, values)))

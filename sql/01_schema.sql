@@ -55,3 +55,14 @@ CREATE TABLE IF NOT EXISTS load_log (
     rows_staged      INTEGER NOT NULL,
     loaded_at        TIMESTAMP DEFAULT current_timestamp
 );
+
+-- Week 3 inputs for the scorecard, kept apart from bank_financials so existing loads are unchanged.
+-- Percent fields are stored as the FDIC reports them (for example 9.5 means 9.5%). Divided by 100 in the view.
+CREATE TABLE IF NOT EXISTS bank_capital_efficiency (
+    cert                    INTEGER NOT NULL,
+    report_date             DATE NOT NULL,
+    tier1_leverage_pct      DOUBLE,
+    allowance_for_loans     DOUBLE,
+    efficiency_ratio_pct    DOUBLE,
+    PRIMARY KEY (cert, report_date)
+);
