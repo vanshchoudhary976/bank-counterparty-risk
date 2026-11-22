@@ -22,6 +22,7 @@ new version and a new entry.
 | 2026-11-22 | Proposed test window 2023 Q2 to 2025 Q2 | Test set 2014 to 2022 already used | After the test result |
 | 2026-11-22 | Proposed window rejected: only 8 failures in its 12-month horizons | Blueprint needs about 100 training events; a test needs enough failures to be meaningful | After the count |
 | 2026-11-22 | Blueprint test gate recorded as NOT MET. Replaced by a rolling out-of-time check inside 2011 to 2013 | No test window with enough failures exists in the current data | After the count |
+| 2026-11-22 | Grade cut-offs computed from development PDs, not validation PDs (bug fix in develop.py) | The first version built cut-offs from validation PDs, so the validation grade table was not out of sample | Before rerunning the grade review; the fix uses only development data |
 
 ## Gate status
 

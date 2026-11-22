@@ -99,15 +99,15 @@ Run on the original pipeline, before the cleaning rules. The result is reported 
 |---|---|
 | AUC and Gini on each set | Done: validation and rolling years in 7.1 and 7.2; original test in 7.3 |
 | KS on each set | Done, same sources |
-| Share of failures in riskiest decile | Not reported for the refit. Pending |
+| Share of failures in riskiest decile | Done: 457 of 463 validation failures (98.7%) fall in grade 10 (section 7.1 grade table) |
 | Calibration by decile | Not reported for the refit. Pending |
 | Platt calibration on validation | Done (7.1) |
 | PSI development vs test, per input | Done for development vs validation (7.1). Fresh test not available |
 | Coefficient signs | Done: all match (7.1). Original test failed (7.3) |
 | Drop-one-year sensitivity | Done (7.1). Large moves from 2008 and 2010 |
 | Benchmark vs baseline and expert | Done for the original test (7.3) and rolling years (7.2) |
-| Error review of missed failures | Pending for this version |
-| Master scale of 10 grades | Cut-offs done (7.1). Grade distribution not reviewed |
+| Error review of missed failures | Done: 0 failures placed in grades 1 to 3 on validation. Failures in grades 1 to 9 total 6 (section 7.1) |
+| Master scale of 10 grades | Done with limitation: cut-offs from development PDs. Grade sizes uneven (4,628 to 12,021). Grades 1 to 4 and 7 have no failures. Grade order is not monotone (grade 7 has 0 failures, grade 8 has 1). Recorded in section 10; no further tuning after the freeze |
 | One-year migration matrix | Produced in the original Week 4 run (7.3 pipeline). Not rerun |
 
 ## 9. Gate status
@@ -127,7 +127,8 @@ Run on the original pipeline, before the cleaning rules. The result is reported 
 - The unrealised securities loss and uninsured deposit test on the 2023 failures is NOT done. Those fields are not loaded.
 - The 2026 data is June only.
 - The 12-month horizon and the event definition are design choices, not regulatory definitions.
-- Grade distribution and the grade-level error review are not complete for this version.
+- The master scale separates the riskiest decile from the rest, but cannot rank grades 1 to 9 on validation: they hold 6 failures between them. Grade order is not monotone.
+- Grade cut-offs use development PDs only. The printed label still says "(validation)" for the cut-offs; this is cosmetic and is corrected in the code.
 
 ## 11. Reproduce
 

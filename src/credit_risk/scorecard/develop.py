@@ -18,18 +18,25 @@ from pathlib import Path
 from typing import Sequence
 
 from credit_risk.scorecard.calibration import PlattCalibrator, fit_platt
-from credit_risk.scorecard.evaluation import auc
+from credit_risk.scorecard.evaluation import GradeRow, auc, default_rate_by_grade, is_risk_ordered
 from credit_risk.scorecard.labels import Observation
 from credit_risk.scorecard.metrics import gini, ks_statistic, psi
 from credit_risk.scorecard.model import fit_logistic
 from credit_risk.scorecard.panel import RATIO_COLUMNS
-from credit_risk.scorecard.scale import training_quantile_cutoffs
+from credit_risk.scorecard.scale import MasterScale, training_quantile_cutoffs
 from credit_risk.scorecard.split import DEVELOPMENT, MIN_EVENTS, VALIDATION
 from credit_risk.scorecard.standardise import Standardiser
-from credit_risk.scorecard.validation import YearSensitivity, drop_one_year_sensitivity, sign_mismatches
+from credit_risk.scorecard.validation import (
+    MissedFailure,
+    YearSensitivity,
+    drop_one_year_sensitivity,
+    missed_failures,
+    sign_mismatches,
+)
 from credit_risk.scorecard.winsorise import Winsoriser
 
 RESULTS_NAME = "development_results.txt"
+MISSED_SAFEST_GRADES = 3
 
 
 @dataclass(frozen=True)
@@ -50,6 +57,10 @@ class DevelopmentResults:
     val_gini: float
     val_ks: float
     psi_by_input: dict[str, float]
+    grade_rows_val: list[GradeRow]
+    risk_ordered_val: bool
+    missed_val: list[MissedFailure]
+    missed_val_count: int
 
 
 def _complete(rows: Sequence[Observation]) -> list[Observation]:
@@ -94,6 +105,16 @@ def run_development(observations: Sequence[Observation]) -> DevelopmentResults:
     calibrator = fit_platt(val_raw, val_y)
     val_pd = [calibrator.calibrate(p) for p in val_raw]
 
+    # Cut-offs come from development PDs only, so the validation grade table is out of sample.
+    dev_pd = [calibrator.calibrate(model.predict_pd(z)) for z in dev_z]
+    scale = MasterScale(training_quantile_cutoffs(dev_pd))
+    val_grades = [scale.grade(p) for p in val_pd]
+    grade_rows = default_rate_by_grade(val_grades, val_y)
+    missed = missed_failures(
+        [(o.cert, o.report_date, p, g, o.label) for o, p, g in zip(val, val_pd, val_grades)],
+        safest_grade_limit=MISSED_SAFEST_GRADES,
+    )
+
     return DevelopmentResults(
         dev_rows=len(dev),
         dev_events=dev_events,
@@ -109,11 +130,15 @@ def run_development(observations: Sequence[Observation]) -> DevelopmentResults:
         sign_problems=sign_mismatches(coefficients),
         sensitivity=sensitivity,
         calibrator=calibrator,
-        cutoffs=training_quantile_cutoffs(val_pd),
+        cutoffs=scale.cutoffs,
         val_auc=auc(val_pd, val_y),
         val_gini=gini(val_pd, val_y),
         val_ks=ks_statistic(val_pd, val_y),
         psi_by_input={n: psi([f[n] for f in dev_w], [f[n] for f in val_w]) for n in names},
+        grade_rows_val=grade_rows,
+        risk_ordered_val=is_risk_ordered(grade_rows),
+        missed_val=missed,
+        missed_val_count=len(missed),
     )
 
 
@@ -141,6 +166,13 @@ def format_development(r: DevelopmentResults) -> str:
     lines += ["", "PSI, development vs validation (below 0.10 stable, above 0.25 major shift):"]
     for n, v in r.psi_by_input.items():
         lines.append(f"  {n:<20} {v:.4f}")
+    lines += ["", "Master scale, validation: observed failure rate by grade (1 = safest):"]
+    for g in r.grade_rows_val:
+        lines.append(f"  grade {g.grade:>2}: {g.count:>6} bank-quarters, {g.failures:>4} failures, rate {g.failure_rate:.5f}")
+    lines.append("Grades order risk correctly: " + ("yes" if r.risk_ordered_val else "NO"))
+    lines += ["", f"Missed failures: failures placed in grades 1 to {MISSED_SAFEST_GRADES} on validation: {r.missed_val_count}"]
+    for m in r.missed_val[:10]:
+        lines.append(f"  cert {m.cert}, {m.report_date}, PD {m.probability:.6f}, grade {m.grade}")
     return "\n".join(lines)
 
 

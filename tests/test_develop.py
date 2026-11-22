@@ -108,3 +108,21 @@ def test_format_names_the_test_set_as_unread(results):
     text = format_development(results)
     assert "Test set not read" in text
     assert "Rule 5 caps" in text
+
+
+def test_grade_table_covers_every_validation_row(results):
+    assert sum(g.count for g in results.grade_rows_val) == results.val_rows
+    assert sum(g.failures for g in results.grade_rows_val) == results.val_events
+
+
+def test_missed_failures_are_in_safest_grades_and_sorted(results):
+    assert all(m.grade <= 3 for m in results.missed_val)
+    probs = [m.probability for m in results.missed_val]
+    assert probs == sorted(probs)
+    assert results.missed_val_count == len(results.missed_val)
+
+
+def test_format_includes_grade_and_missed_sections(results):
+    text = format_development(results)
+    assert "Master scale, validation" in text
+    assert "Missed failures" in text
