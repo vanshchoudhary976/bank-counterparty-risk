@@ -1,0 +1,27 @@
+Diagnosis of the early-warning back-test (read-only; thresholds unchanged).
+
+2008 to 2012 failures
+  survivor bank-quarters: 149421, with a red flag: 43515 (quarter false alarm rate 29.1%)
+  red flags on survivors, by rule (bank-quarters):
+    tier1 below floor                                           3349  (2.24% of survivor quarters)
+    loans to deposits above 100% and rising four quarters        316  (0.21% of survivor quarters)
+    rating downgrade of two notches or grade 8 and worse       41389  (27.70% of survivor quarters)
+    asset growth above 40% with falling capital                 2874  (1.92% of survivor quarters)
+  red flags in failing banks' pre-failure quarters, by rule:
+    tier1 below floor                                           1894
+    loans to deposits above 100% and rising four quarters          2
+    rating downgrade of two notches or grade 8 and worse        3589
+    asset growth above 40% with falling capital                   44
+
+2023 cases
+  survivor bank-quarters: 37034, with a red flag: 7203 (quarter false alarm rate 19.4%)
+  red flags on survivors, by rule (bank-quarters):
+    tier1 below floor                                             99  (0.27% of survivor quarters)
+    loans to deposits above 100% and rising four quarters        406  (1.10% of survivor quarters)
+    rating downgrade of two notches or grade 8 and worse        6708  (18.11% of survivor quarters)
+    asset growth above 40% with falling capital                  233  (0.63% of survivor quarters)
+  red flags in failing banks' pre-failure quarters, by rule:
+    tier1 below floor                                              1
+    loans to deposits above 100% and rising four quarters          1
+    rating downgrade of two notches or grade 8 and worse           9
+

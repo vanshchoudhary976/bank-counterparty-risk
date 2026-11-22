@@ -1,0 +1,87 @@
+ILLUSTRATIVE. Shocks are assumptions (see credit_risk/stress/scenarios.py). Balance sheets at 2022-12-31.
+Grades and PDs come from the Week 4 scorecard. Limit utilisation uses the current collateralised peak PFE.
+
+First National Bank Texas (cert 3285), base grade 8, base PD 0.0570%
+  Base                       grade  8  PD 0.0570%  tier1 8.89%  limit util 42%
+  Deposit run                grade  9  PD 0.1016%  tier1 8.50%  limit util 42%
+  Credit shock               grade 10  PD 0.7292%  tier1 7.63%  limit util reduce-only
+  Rate shock                 grade  9  PD 0.1384%  tier1 6.89%  limit util 42%
+  Combined (half strength)   grade 10  PD 0.4262%  tier1 7.07%  limit util reduce-only
+
+FirstBank Southwest (cert 3387), base grade 7, base PD 0.0275%
+  Base                       grade  7  PD 0.0275%  tier1 10.02%  limit util 2%
+  Deposit run                grade  8  PD 0.0452%  tier1 9.61%  limit util 5%
+  Credit shock               grade 10  PD 1.1749%  tier1 8.00%  limit util reduce-only
+  Rate shock                 grade  9  PD 0.1113%  tier1 8.02%  limit util 5%
+  Combined (half strength)   grade 10  PD 0.5264%  tier1 7.80%  limit util reduce-only
+
+Wells Fargo Bank, National Association (cert 3511), base grade 6, base PD 0.0188%
+  Base                       grade  6  PD 0.0188%  tier1 8.34%  limit util 6%
+  Deposit run                grade  6  PD 0.0254%  tier1 7.97%  limit util 6%
+  Credit shock               grade 10  PD 0.6244%  tier1 6.76%  limit util reduce-only
+  Rate shock                 grade  9  PD 0.1047%  tier1 6.34%  limit util 15%
+  Combined (half strength)   grade 10  PD 0.3174%  tier1 6.37%  limit util reduce-only
+
+Arrow Bank National Association (cert 7074), base grade 6, base PD 0.0214%
+  Base                       grade  6  PD 0.0214%  tier1 9.04%  limit util 6%
+  Deposit run                grade  7  PD 0.0326%  tier1 8.64%  limit util 6%
+  Credit shock               grade 10  PD 1.5926%  tier1 6.85%  limit util reduce-only
+  Rate shock                 grade  9  PD 0.1190%  tier1 7.04%  limit util 16%
+  Combined (half strength)   grade 10  PD 0.5882%  tier1 6.74%  limit util reduce-only
+
+Centreville Bank (cert 17764), base grade 2, base PD 0.0002%
+  Base                       grade  2  PD 0.0002%  tier1 15.87%  limit util 1%
+  Deposit run                grade  2  PD 0.0002%  tier1 15.53%  limit util 1%
+  Credit shock               grade  5  PD 0.0116%  tier1 13.76%  limit util 1%
+  Rate shock                 grade  3  PD 0.0010%  tier1 13.87%  limit util 1%
+  Combined (half strength)   grade  4  PD 0.0040%  tier1 13.64%  limit util 1%
+
+Texas Bank and Trust Company (cert 17842), base grade 5, base PD 0.0122%
+  Base                       grade  5  PD 0.0122%  tier1 10.30%  limit util 2%
+  Deposit run                grade  6  PD 0.0185%  tier1 9.93%  limit util 2%
+  Credit shock               grade 10  PD 1.0091%  tier1 8.02%  limit util reduce-only
+  Rate shock                 grade  8  PD 0.0676%  tier1 8.30%  limit util 4%
+  Combined (half strength)   grade 10  PD 0.3500%  tier1 7.98%  limit util reduce-only
+
+Pioneer Bank, National Association (cert 20741), base grade 5, base PD 0.0087%
+  Base                       grade  5  PD 0.0087%  tier1 10.29%  limit util 5%
+  Deposit run                grade  5  PD 0.0112%  tier1 9.90%  limit util 5%
+  Credit shock               grade 10  PD 0.3425%  tier1 8.57%  limit util reduce-only
+  Rate shock                 grade  8  PD 0.0485%  tier1 8.29%  limit util 12%
+  Combined (half strength)   grade  9  PD 0.1577%  tier1 8.23%  limit util 12%
+
+American Express National  Bank (cert 27471), base grade 7, base PD 0.0278%
+  Base                       grade  7  PD 0.0278%  tier1 9.69%  limit util 1%
+  Deposit run                grade  7  PD 0.0419%  tier1 9.35%  limit util 1%
+  Credit shock               grade 10  PD 1.1249%  tier1 7.28%  limit util reduce-only
+  Rate shock                 grade  9  PD 0.1544%  tier1 7.69%  limit util 2%
+  Combined (half strength)   grade 10  PD 0.4586%  tier1 7.31%  limit util reduce-only
+
+Rosedale Bank (cert 29613), base grade 1, base PD 0.0000%
+  Base                       grade  1  PD 0.0000%  tier1 19.69%  limit util 1%
+  Deposit run                grade  1  PD 0.0000%  tier1 19.34%  limit util 1%
+  Credit shock               grade  2  PD 0.0005%  tier1 17.47%  limit util 1%
+  Rate shock                 grade  1  PD 0.0000%  tier1 17.69%  limit util 1%
+  Combined (half strength)   grade  2  PD 0.0001%  tier1 17.40%  limit util 1%
+
+SouthState Bank, National Association (cert 33555), base grade 4, base PD 0.0046%
+  Base                       grade  4  PD 0.0046%  tier1 9.39%  limit util 47%
+  Deposit run                grade  4  PD 0.0057%  tier1 9.01%  limit util 47%
+  Credit shock               grade 10  PD 0.2787%  tier1 7.35%  limit util reduce-only
+  Rate shock                 grade  6  PD 0.0254%  tier1 7.39%  limit util 47%
+  Combined (half strength)   grade  9  PD 0.1018%  tier1 7.18%  limit util 116%
+
+North State Bank (cert 35519), base grade 8, base PD 0.0669%
+  Base                       grade  8  PD 0.0669%  tier1 7.73%  limit util 3%
+  Deposit run                grade  9  PD 0.1104%  tier1 7.32%  limit util 3%
+  Credit shock               grade 10  PD 6.2673%  tier1 5.33%  limit util reduce-only
+  Rate shock                 grade 10  PD 0.3708%  tier1 5.73%  limit util reduce-only
+  Combined (half strength)   grade 10  PD 2.1802%  tier1 5.33%  limit util reduce-only
+
+International Bank of Commerce (cert 59093), base grade 2, base PD 0.0003%
+  Base                       grade  2  PD 0.0003%  tier1 13.48%  limit util 1%
+  Deposit run                grade  2  PD 0.0003%  tier1 13.13%  limit util 1%
+  Credit shock               grade  4  PD 0.0045%  tier1 12.45%  limit util 3%
+  Rate shock                 grade  3  PD 0.0016%  tier1 11.48%  limit util 1%
+  Combined (half strength)   grade  3  PD 0.0028%  tier1 11.79%  limit util 1%
+
