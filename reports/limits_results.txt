@@ -1,0 +1,18 @@
+ILLUSTRATIVE. Limits are set from an invented capital base and grade percentages.
+Utilisation uses collateralised, post-margin peak PFE. Bands: green below 80%, amber 80% to 100%, red above 100%.
+
+   cert  name                                 grade           limit        peak PFE     util  status
+  33555  SouthState Bank, National Associatio     4     125,000,000      58,151,177      47%  green
+   3285  First National Bank Texas                8      50,000,000      21,200,000      42%  green
+   7074  Arrow Bank National Association          6     125,000,000       8,122,899       6%  green
+   3511  Wells Fargo Bank, National Associati     6     125,000,000       7,309,060       6%  green
+  20741  Pioneer Bank, National Association       5     125,000,000       5,985,387       5%  green
+  35519  North State Bank                         8      50,000,000       1,474,092       3%  green
+   3387  FirstBank Southwest                      7     125,000,000       2,647,530       2%  green
+  17842  Texas Bank and Trust Company             5     125,000,000       2,131,080       2%  green
+  59093  International Bank of Commerce           2     250,000,000       3,263,155       1%  green
+  29613  Rosedale Bank                            1     250,000,000       2,338,517       1%  green
+  27471  American Express National  Bank          7     125,000,000       1,000,000       1%  green
+  17764  Centreville Bank                         2     250,000,000       1,485,484       1%  green
+
+Breach report: 0 counterparties above 100%

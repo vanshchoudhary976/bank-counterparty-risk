@@ -1,0 +1,16 @@
+ILLUSTRATIVE portfolio. Trades are invented. Counterparties are real banks graded by the scorecard.
+Simplified Monte Carlo, 5000 paths, seed 42. Not a production model.
+
+   cert  name                                     grade          peak PFE           max EPE
+   7074  Arrow Bank National Association              6       122,298,188       113,770,962
+  27471  American Express National  Bank              7        78,100,000        78,100,000
+   3387  FirstBank Southwest                          7        72,846,079        64,646,480
+  35519  North State Bank                             8        58,680,947        57,013,552
+  33555  SouthState Bank, National Association        4        58,151,177        54,331,841
+  59093  International Bank of Commerce               2        39,251,834        32,496,352
+   3511  Wells Fargo Bank, National Association       6        29,955,296        22,433,592
+  20741  Pioneer Bank, National Association           5        25,473,277        20,594,354
+   3285  First National Bank Texas                    8        21,200,000        21,200,000
+  17842  Texas Bank and Trust Company                 5         9,832,157         2,153,817
+  29613  Rosedale Bank                                1         5,778,242         1,504,046
+  17764  Centreville Bank                             2         1,965,290           459,968
