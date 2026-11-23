@@ -46,6 +46,10 @@ data/raw/               downloaded files, never edited (not committed)
 data/processed/         extracts for dashboards (later weeks)
 ```
 
+## Dashboards
+Module D interactive dashboard (ILLUSTRATIVE): [Tableau Public](https://public.tableau.com/views/ProjectFModuleDStressResultsILLUSTRATIVE/Dashboard1)
+
+
 ## Principles
 
 - Raw files are never edited. Every load checks the checksum first.
