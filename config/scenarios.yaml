@@ -1,0 +1,31 @@
+# Module D stress scenarios. ILLUSTRATIVE.
+# Every value is an assumption, not a regulatory calibration. The code in
+# src/credit_risk/stress/scenarios.py must hold the same values; tests/test_scenario_config.py checks this.
+# Do not change a value after seeing results. Record any change in docs/change_log.md as a new entry.
+
+assumptions:
+  securities_share: 0.25          # share of assets held as securities
+  securities_duration_years: 4.0  # duration of those securities, in years
+  sale_loss_rate: 0.03            # loss when securities are sold to meet outflows
+
+scenarios:
+  - name: Base
+    deposit_run: 0.0
+    provision_share: 0.0
+    rate_shock_bp: 0.0
+  - name: Deposit run
+    deposit_run: 0.15
+    provision_share: 0.0
+    rate_shock_bp: 0.0
+  - name: Credit shock
+    deposit_run: 0.0
+    provision_share: 0.03
+    rate_shock_bp: 0.0
+  - name: Rate shock
+    deposit_run: 0.0
+    provision_share: 0.0
+    rate_shock_bp: 200.0
+  - name: Combined (half strength)
+    deposit_run: 0.075
+    provision_share: 0.015
+    rate_shock_bp: 100.0
