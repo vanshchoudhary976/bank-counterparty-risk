@@ -33,3 +33,5 @@ new version and a new entry.
 - Substitute check: rolling out-of-time check on 2011, 2012 and 2013 (reports/rolling_results.txt). It is weaker than the blueprint test, because it reuses data already seen during development.
 - Module C gate: met. Netting, collateral and seed tests pass.
 - Module D early-warning gate: NOT MET. The grade-8 rule flags 27.7% of survivor quarters in 2008 to 2012. The quarterly false alarm rate is 29.1% in 2008 to 2012 and 19.4% in the 2023 cases. Thresholds were not changed after the back-test.
+
+Week 4 gate: met (confirmed). Stress testing, expected loss under stress, the config file, the CSV export and the Tableau dashboard are complete and tested (341 tests passing). Open item: the Module D early-warning rule did not meet its gate. No revised rule will be set without fresh out-of-time data, because tuning it on the data already seen would bias the result. The 0.05% PD floor is recorded as a limitation. The Module D dashboard is published on Tableau Public (ILLUSTRATIVE).
