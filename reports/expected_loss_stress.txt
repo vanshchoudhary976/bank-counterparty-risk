@@ -1,0 +1,153 @@
+Balance sheets at 2022-12-31.
+ILLUSTRATIVE. Expected loss = EAD x PD x LGD at LGD 45% (base case). PDs come from the validation grade table with a floor.
+Repo exposure is scaled by 1.5 only when a repo counterparty is downgraded by 2 or more grades. Stressed exposure for other counterparties is unchanged.
+
+Deposit run
+  First National Bank Texas (cert 3285): grade 8 to 9, PD 0.0500% to 0.0500%, EAD 21,200,000 to 21,200,000, EL 4,770 to 4,770 (change +0)
+
+Credit shock
+  First National Bank Texas (cert 3285): grade 8 to 10, PD 0.0500% to 6.6989%, EAD 21,200,000 to 21,200,000, EL 4,770 to 639,077 (change +634,307)
+
+Rate shock
+  First National Bank Texas (cert 3285): grade 8 to 9, PD 0.0500% to 0.0500%, EAD 21,200,000 to 21,200,000, EL 4,770 to 4,770 (change +0)
+
+Combined (half strength)
+  First National Bank Texas (cert 3285): grade 8 to 10, PD 0.0500% to 6.6989%, EAD 21,200,000 to 21,200,000, EL 4,770 to 639,077 (change +634,307)
+
+Deposit run
+  FirstBank Southwest (cert 3387): grade 7 to 8, PD 0.0500% to 0.0500%, EAD 2,647,530 to 2,647,530, EL 596 to 596 (change +0)
+
+Credit shock
+  FirstBank Southwest (cert 3387): grade 7 to 10, PD 0.0500% to 6.6989%, EAD 2,647,530 to 3,971,296, EL 596 to 119,715 (change +119,119)
+
+Rate shock
+  FirstBank Southwest (cert 3387): grade 7 to 9, PD 0.0500% to 0.0500%, EAD 2,647,530 to 3,971,296, EL 596 to 894 (change +298)
+
+Combined (half strength)
+  FirstBank Southwest (cert 3387): grade 7 to 10, PD 0.0500% to 6.6989%, EAD 2,647,530 to 3,971,296, EL 596 to 119,715 (change +119,119)
+
+Deposit run
+  Wells Fargo Bank, National Association (cert 3511): grade 6 to 6, PD 0.0500% to 0.0500%, EAD 7,309,060 to 7,309,060, EL 1,645 to 1,645 (change +0)
+
+Credit shock
+  Wells Fargo Bank, National Association (cert 3511): grade 6 to 10, PD 0.0500% to 6.6989%, EAD 7,309,060 to 10,963,589, EL 1,645 to 330,499 (change +328,854)
+
+Rate shock
+  Wells Fargo Bank, National Association (cert 3511): grade 6 to 9, PD 0.0500% to 0.0500%, EAD 7,309,060 to 10,963,589, EL 1,645 to 2,467 (change +822)
+
+Combined (half strength)
+  Wells Fargo Bank, National Association (cert 3511): grade 6 to 10, PD 0.0500% to 6.6989%, EAD 7,309,060 to 10,963,589, EL 1,645 to 330,499 (change +328,854)
+
+Deposit run
+  Arrow Bank National Association (cert 7074): grade 6 to 7, PD 0.0500% to 0.0500%, EAD 8,122,899 to 8,122,899, EL 1,828 to 1,828 (change +0)
+
+Credit shock
+  Arrow Bank National Association (cert 7074): grade 6 to 10, PD 0.0500% to 6.6989%, EAD 8,122,899 to 12,184,348, EL 1,828 to 367,299 (change +365,471)
+
+Rate shock
+  Arrow Bank National Association (cert 7074): grade 6 to 9, PD 0.0500% to 0.0500%, EAD 8,122,899 to 12,184,348, EL 1,828 to 2,741 (change +914)
+
+Combined (half strength)
+  Arrow Bank National Association (cert 7074): grade 6 to 10, PD 0.0500% to 6.6989%, EAD 8,122,899 to 12,184,348, EL 1,828 to 367,299 (change +365,471)
+
+Deposit run
+  Centreville Bank (cert 17764): grade 2 to 2, PD 0.0500% to 0.0500%, EAD 1,485,484 to 1,485,484, EL 334 to 334 (change +0)
+
+Credit shock
+  Centreville Bank (cert 17764): grade 2 to 5, PD 0.0500% to 0.0500%, EAD 1,485,484 to 1,485,484, EL 334 to 334 (change +0)
+
+Rate shock
+  Centreville Bank (cert 17764): grade 2 to 3, PD 0.0500% to 0.0500%, EAD 1,485,484 to 1,485,484, EL 334 to 334 (change +0)
+
+Combined (half strength)
+  Centreville Bank (cert 17764): grade 2 to 4, PD 0.0500% to 0.0500%, EAD 1,485,484 to 1,485,484, EL 334 to 334 (change +0)
+
+Deposit run
+  Texas Bank and Trust Company (cert 17842): grade 5 to 6, PD 0.0500% to 0.0500%, EAD 2,131,080 to 2,131,080, EL 479 to 479 (change +0)
+
+Credit shock
+  Texas Bank and Trust Company (cert 17842): grade 5 to 10, PD 0.0500% to 6.6989%, EAD 2,131,080 to 2,131,080, EL 479 to 64,242 (change +63,762)
+
+Rate shock
+  Texas Bank and Trust Company (cert 17842): grade 5 to 8, PD 0.0500% to 0.0500%, EAD 2,131,080 to 2,131,080, EL 479 to 479 (change +0)
+
+Combined (half strength)
+  Texas Bank and Trust Company (cert 17842): grade 5 to 10, PD 0.0500% to 6.6989%, EAD 2,131,080 to 2,131,080, EL 479 to 64,242 (change +63,762)
+
+Deposit run
+  Pioneer Bank, National Association (cert 20741): grade 5 to 5, PD 0.0500% to 0.0500%, EAD 5,985,387 to 5,985,387, EL 1,347 to 1,347 (change +0)
+
+Credit shock
+  Pioneer Bank, National Association (cert 20741): grade 5 to 10, PD 0.0500% to 6.6989%, EAD 5,985,387 to 8,978,080, EL 1,347 to 270,645 (change +269,299)
+
+Rate shock
+  Pioneer Bank, National Association (cert 20741): grade 5 to 8, PD 0.0500% to 0.0500%, EAD 5,985,387 to 8,978,080, EL 1,347 to 2,020 (change +673)
+
+Combined (half strength)
+  Pioneer Bank, National Association (cert 20741): grade 5 to 9, PD 0.0500% to 0.0500%, EAD 5,985,387 to 8,978,080, EL 1,347 to 2,020 (change +673)
+
+Deposit run
+  American Express National  Bank (cert 27471): grade 7 to 7, PD 0.0500% to 0.0500%, EAD 1,000,000 to 1,000,000, EL 225 to 225 (change +0)
+
+Credit shock
+  American Express National  Bank (cert 27471): grade 7 to 10, PD 0.0500% to 6.6989%, EAD 1,000,000 to 1,500,000, EL 225 to 45,218 (change +44,993)
+
+Rate shock
+  American Express National  Bank (cert 27471): grade 7 to 9, PD 0.0500% to 0.0500%, EAD 1,000,000 to 1,500,000, EL 225 to 338 (change +112)
+
+Combined (half strength)
+  American Express National  Bank (cert 27471): grade 7 to 10, PD 0.0500% to 6.6989%, EAD 1,000,000 to 1,500,000, EL 225 to 45,218 (change +44,993)
+
+Deposit run
+  Rosedale Bank (cert 29613): grade 1 to 1, PD 0.0500% to 0.0500%, EAD 2,338,517 to 2,338,517, EL 526 to 526 (change +0)
+
+Credit shock
+  Rosedale Bank (cert 29613): grade 1 to 2, PD 0.0500% to 0.0500%, EAD 2,338,517 to 2,338,517, EL 526 to 526 (change +0)
+
+Rate shock
+  Rosedale Bank (cert 29613): grade 1 to 1, PD 0.0500% to 0.0500%, EAD 2,338,517 to 2,338,517, EL 526 to 526 (change +0)
+
+Combined (half strength)
+  Rosedale Bank (cert 29613): grade 1 to 2, PD 0.0500% to 0.0500%, EAD 2,338,517 to 2,338,517, EL 526 to 526 (change +0)
+
+Deposit run
+  SouthState Bank, National Association (cert 33555): grade 4 to 4, PD 0.0500% to 0.0500%, EAD 58,151,177 to 58,151,177, EL 13,084 to 13,084 (change +0)
+
+Credit shock
+  SouthState Bank, National Association (cert 33555): grade 4 to 10, PD 0.0500% to 6.6989%, EAD 58,151,177 to 58,151,177, EL 13,084 to 1,752,974 (change +1,739,890)
+
+Rate shock
+  SouthState Bank, National Association (cert 33555): grade 4 to 6, PD 0.0500% to 0.0500%, EAD 58,151,177 to 58,151,177, EL 13,084 to 13,084 (change +0)
+
+Combined (half strength)
+  SouthState Bank, National Association (cert 33555): grade 4 to 9, PD 0.0500% to 0.0500%, EAD 58,151,177 to 58,151,177, EL 13,084 to 13,084 (change +0)
+
+Deposit run
+  North State Bank (cert 35519): grade 8 to 9, PD 0.0500% to 0.0500%, EAD 1,474,092 to 1,474,092, EL 332 to 332 (change +0)
+
+Credit shock
+  North State Bank (cert 35519): grade 8 to 10, PD 0.0500% to 6.6989%, EAD 1,474,092 to 2,211,138, EL 332 to 66,655 (change +66,323)
+
+Rate shock
+  North State Bank (cert 35519): grade 8 to 10, PD 0.0500% to 6.6989%, EAD 1,474,092 to 2,211,138, EL 332 to 66,655 (change +66,323)
+
+Combined (half strength)
+  North State Bank (cert 35519): grade 8 to 10, PD 0.0500% to 6.6989%, EAD 1,474,092 to 2,211,138, EL 332 to 66,655 (change +66,323)
+
+Deposit run
+  International Bank of Commerce (cert 59093): grade 2 to 2, PD 0.0500% to 0.0500%, EAD 3,263,155 to 3,263,155, EL 734 to 734 (change +0)
+
+Credit shock
+  International Bank of Commerce (cert 59093): grade 2 to 4, PD 0.0500% to 0.0500%, EAD 3,263,155 to 4,894,733, EL 734 to 1,101 (change +367)
+
+Rate shock
+  International Bank of Commerce (cert 59093): grade 2 to 3, PD 0.0500% to 0.0500%, EAD 3,263,155 to 3,263,155, EL 734 to 734 (change +0)
+
+Combined (half strength)
+  International Bank of Commerce (cert 59093): grade 2 to 3, PD 0.0500% to 0.0500%, EAD 3,263,155 to 3,263,155, EL 734 to 734 (change +0)
+
+Totals by scenario:
+  Deposit run: base EL 25,899, stressed EL 25,899, change +0
+  Credit shock: base EL 25,899, stressed EL 3,658,285, change +3,632,385
+  Rate shock: base EL 25,899, stressed EL 95,043, change +69,143
+  Combined (half strength): base EL 25,899, stressed EL 1,649,402, change +1,623,503
