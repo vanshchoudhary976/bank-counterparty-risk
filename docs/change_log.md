@@ -23,8 +23,13 @@ new version and a new entry.
 | 2026-11-22 | Proposed window rejected: only 8 failures in its 12-month horizons | Blueprint needs about 100 training events; a test needs enough failures to be meaningful | After the count |
 | 2026-11-22 | Blueprint test gate recorded as NOT MET. Replaced by a rolling out-of-time check inside 2011 to 2013 | No test window with enough failures exists in the current data | After the count |
 | 2026-11-22 | Grade cut-offs computed from development PDs, not validation PDs (bug fix in develop.py) | The first version built cut-offs from validation PDs, so the validation grade table was not out of sample | Before rerunning the grade review; the fix uses only development data |
+| 2026-11-22 | Module C: exposure engine for 12 banks (illustrative trades), collateral with threshold 1,000,000 and minimum transfer 100,000, limits by grade, expected loss at LGD 25%, 45% and 60% | Blueprint Module C step | Before the exposure results were reported |
+| 2026-11-22 | Module D: four stress scenarios (deposit run 15%, credit shock 3% provision, rate shock 200bp, combined at half strength) | Blueprint Module D step | Before the stress results were reported |
+| 2026-11-22 | Module D: early-warning rules (Tier 1 floor 6%, loans to deposits above 100%, grade 8 or worse, asset growth 25% amber and 40% red), back-tested on 2008 to 2012 and 2023 cases | Blueprint Module D step | Rules set before the back-test. Thresholds were not changed after the back-test. The grade rule's justification was found to be wrong and is recorded here |
 
 ## Gate status
 
 - Blueprint Module B gate ("test set used once, limitations section written"): the test set was used once (2014 to 2022 Q3) on the original pipeline, and the result failed. The gate is recorded as not met for this version.
 - Substitute check: rolling out-of-time check on 2011, 2012 and 2013 (reports/rolling_results.txt). It is weaker than the blueprint test, because it reuses data already seen during development.
+- Module C gate: met. Netting, collateral and seed tests pass.
+- Module D early-warning gate: NOT MET. The grade-8 rule flags 27.7% of survivor quarters in 2008 to 2012. The quarterly false alarm rate is 29.1% in 2008 to 2012 and 19.4% in the 2023 cases. Thresholds were not changed after the back-test.
