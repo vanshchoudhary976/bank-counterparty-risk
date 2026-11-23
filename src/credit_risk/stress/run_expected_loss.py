@@ -9,6 +9,7 @@ from credit_risk.exposure.limits import counterparty_pfe
 from credit_risk.exposure.portfolio import read_portfolio
 from credit_risk.exposure.run_exposure import read_counterparties
 from credit_risk.stress.expected_loss import build_row, format_expected_loss
+from credit_risk.stress.export import write_csv
 from credit_risk.stress.run_stress import snapshots
 from credit_risk.stress.scenarios import SCENARIOS, features, stressed_features
 
@@ -48,6 +49,7 @@ def run(warehouse_file: Path, data_dir: Path, reports_dir: Path) -> str:
     text = f"Balance sheets at {SELECTION_QUARTER.isoformat()}.\n" + format_expected_loss(rows)
     reports_dir.mkdir(parents=True, exist_ok=True)
     (reports_dir / "expected_loss_stress.txt").write_text(text, encoding="utf-8")
+    write_csv(rows, reports_dir / "tableau" / "expected_loss_stress.csv")
     return text
 
 
