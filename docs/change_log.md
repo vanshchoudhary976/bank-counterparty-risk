@@ -26,6 +26,7 @@ new version and a new entry.
 | 2026-11-22 | Module C: exposure engine for 12 banks (illustrative trades), collateral with threshold 1,000,000 and minimum transfer 100,000, limits by grade, expected loss at LGD 25%, 45% and 60% | Blueprint Module C step | Before the exposure results were reported |
 | 2026-11-22 | Module D: four stress scenarios (deposit run 15%, credit shock 3% provision, rate shock 200bp, combined at half strength) | Blueprint Module D step | Before the stress results were reported |
 | 2026-11-22 | Module D: early-warning rules (Tier 1 floor 6%, loans to deposits above 100%, grade 8 or worse, asset growth 25% amber and 40% red), back-tested on 2008 to 2012 and 2023 cases | Blueprint Module D step | Rules set before the back-test. Thresholds were not changed after the back-test. The grade rule's justification was found to be wrong and is recorded here |
+| 2026-11-25 | Module F: added margin and growth sensitivity table to the Sensitivity sheet (live formulas, ILLUSTRATIVE) | Needed to complete the Module F sensitivity step | After the build and checks |
 
 ## Gate status
 
