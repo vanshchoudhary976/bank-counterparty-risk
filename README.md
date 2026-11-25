@@ -49,6 +49,7 @@ data/processed/         extracts for dashboards (later weeks)
 ## Dashboards
 Module D interactive dashboard (ILLUSTRATIVE): [Tableau Public](https://public.tableau.com/views/ProjectFModuleDStressResultsILLUSTRATIVE/Dashboard1)
 
+Module F valuation sensitivity dashboard (ILLUSTRATIVE): https://public.tableau.com/views/module_f_valuation_sensitivity/module_f_valuation_sensitivity
 
 ## Principles
 
