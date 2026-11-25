@@ -27,6 +27,8 @@ new version and a new entry.
 | 2026-11-22 | Module D: four stress scenarios (deposit run 15%, credit shock 3% provision, rate shock 200bp, combined at half strength) | Blueprint Module D step | Before the stress results were reported |
 | 2026-11-22 | Module D: early-warning rules (Tier 1 floor 6%, loans to deposits above 100%, grade 8 or worse, asset growth 25% amber and 40% red), back-tested on 2008 to 2012 and 2023 cases | Blueprint Module D step | Rules set before the back-test. Thresholds were not changed after the back-test. The grade rule's justification was found to be wrong and is recorded here |
 | 2026-11-25 | Module F: added margin and growth sensitivity table to the Sensitivity sheet (live formulas, ILLUSTRATIVE) | Needed to complete the Module F sensitivity step | After the build and checks |
+| 2026-11-25 | Corrected the gate status line "Week 4 gate: met (confirmed)". It used blueprint week numbers and described Module D work. Replaced below. The Module B test gate remains NOT MET | Project follows its own task order, not the blueprint's week numbers | After the gate status was reviewed |
+
 
 ## Gate status
 
@@ -35,4 +37,4 @@ new version and a new entry.
 - Module C gate: met. Netting, collateral and seed tests pass.
 - Module D early-warning gate: NOT MET. The grade-8 rule flags 27.7% of survivor quarters in 2008 to 2012. The quarterly false alarm rate is 29.1% in 2008 to 2012 and 19.4% in the 2023 cases. Thresholds were not changed after the back-test.
 
-Week 4 gate: met (confirmed). Stress testing, expected loss under stress, the config file, the CSV export and the Tableau dashboard are complete and tested (341 tests passing). Open item: the Module D early-warning rule did not meet its gate. No revised rule will be set without fresh out-of-time data, because tuning it on the data already seen would bias the result. The 0.05% PD floor is recorded as a limitation. The Module D dashboard is published on Tableau Public (ILLUSTRATIVE).
+Module D stress work (stress testing, expected loss under stress, config file, CSV export and Tableau dashboard) is complete and tested (341 tests passing). Module D early-warning gate: NOT MET (see above). Module B test gate: NOT MET (see line 33). The Week 4 label in the 2026-11-22 entries refers to the blueprint's week numbering and is kept for the record. No revised early-warning rule will be set without fresh out-of-time data, because tuning it on data already seen would bias the result. The 0.05% PD floor is recorded as a limitation. The Module D dashboard is published on Tableau Public (ILLUSTRATIVE).
