@@ -1,0 +1,111 @@
+Week 4 (Module B part 2): fit, calibrate, validate. Test set scored once.
+
+Sets and event counts (before dropping incomplete rows):
+  development (2005 to 2010)         204230 bank-quarters, 1580 events
+  validation (2011 to 2013)          87196 bank-quarters, 477 events
+  test (2014 to 2022 Q3)             198264 bank-quarters, 148 events
+  case study (2022 Q4 to 2023 Q1)    9499 bank-quarters, 8 events
+Rows dropped for a missing ratio: development 3915, validation 1579, test 3834, case study 215
+
+Coefficients (standardised inputs; expected sign in brackets):
+  equity_to_assets     -1.6558  [-]
+  tier1_leverage       -8.9845  [-]
+  allowance_to_loans   +0.0997  [+]
+  roa_annualised       -0.5544  [-]
+  efficiency_ratio     -0.0017  [+]
+  loans_to_deposits    +0.0641  [+]
+  intercept            -8.0457
+Sign check: MISMATCH in efficiency_ratio
+
+Drop-one-year sensitivity (largest coefficient move, sign flips):
+  without 2005: max move 0.0972, sign flips: none
+  without 2006: max move 0.1054, sign flips: none
+  without 2007: max move 0.5217, sign flips: none
+  without 2008: max move 0.7371, sign flips: efficiency_ratio, loans_to_deposits
+  without 2009: max move 7.2092, sign flips: none
+  without 2010: max move 0.3340, sign flips: none
+
+Platt calibration (fitted on validation): slope 1.2679, intercept -0.8208
+
+Master scale cut-offs (10 grades, from validation): 0.00000, 0.00001, 0.00002, 0.00004, 0.00007, 0.00012, 0.00019, 0.00033, 0.00073
+
+Discrimination:
+  validation AUC 0.994, Gini 0.988, KS 0.952
+  test       AUC 0.962, Gini 0.923, KS 0.855
+  riskiest decile holds 92.6% of test failures
+
+Calibration by decile, test (1 = riskiest):
+  decile  count  failures  mean predicted  observed
+       1  19443       137          0.0091    0.0070
+       2  19443         3          0.0003    0.0002
+       3  19443         2          0.0001    0.0001
+       4  19443         0          0.0001    0.0000
+       5  19443         2          0.0001    0.0001
+       6  19443         0          0.0000    0.0000
+       7  19443         0          0.0000    0.0000
+       8  19443         4          0.0000    0.0002
+       9  19443         0          0.0000    0.0000
+      10  19443         0          0.0000    0.0000
+
+PSI, development vs test (below 0.10 stable, above 0.25 major shift):
+  equity_to_assets     0.1603
+  tier1_leverage       0.2729
+  allowance_to_loans   0.0120
+  roa_annualised       0.1544
+  efficiency_ratio     0.0390
+  loans_to_deposits    0.0700
+
+Benchmarks on the test set:
+  AUC: model 0.962, baseline 0.961, expert 0.830
+  Spearman, model vs expert 0.561, model vs baseline 0.979
+  Riskiest 10% agreement, model vs expert 37.3%, model vs baseline 84.2%
+
+Master scale, test: observed failure rate by grade:
+  grade  1: 23970 bank-quarters,   0 failures, rate 0.0000
+  grade  2: 23353 bank-quarters,   4 failures, rate 0.0002
+  grade  3: 24833 bank-quarters,   0 failures, rate 0.0000
+  grade  4: 24086 bank-quarters,   0 failures, rate 0.0000
+  grade  5: 22090 bank-quarters,   2 failures, rate 0.0001
+  grade  6: 19814 bank-quarters,   0 failures, rate 0.0000
+  grade  7: 17951 bank-quarters,   2 failures, rate 0.0001
+  grade  8: 15967 bank-quarters,   2 failures, rate 0.0001
+  grade  9: 13861 bank-quarters,  11 failures, rate 0.0008
+  grade 10:  8505 bank-quarters, 127 failures, rate 0.0149
+Grades order risk correctly: NO
+
+Error review: failures placed in grades 1 to 3 on test: 4
+  cert 30570, 2017-09-30, PD 0.0000, grade 2
+  cert 30570, 2017-03-31, PD 0.0000, grade 2
+  cert 30570, 2017-06-30, PD 0.0000, grade 2
+  cert 30570, 2016-12-31, PD 0.0000, grade 2
+
+One-year migration, test set (rows: grade now; columns: grade one year later):
+  grade  1: 17844  2703   372   141    68    62    41    26    11    10  (83.9% stay)
+  grade  2:  2562 12379  4141  1078   415   160    94    38    34    17  (59.2% stay)
+  grade  3:   252  4151 10220  4452  1751   776   314   147    71    49  (46.1% stay)
+  grade  4:    91   584  5137  7948  4068  1896   899   410   163    81  (37.4% stay)
+  grade  5:    76   214  1192  4927  6064  3552  1847   913   390    92  (31.5% stay)
+  grade  6:    44   107   335  1548  4245  5045  3274  1746   790   132  (29.2% stay)
+  grade  7:    28    65   151   495  1629  3514  4702  2932  1493   277  (30.8% stay)
+  grade  8:    31    53   112   229   562  1351  3205  4492  2813   635  (33.3% stay)
+  grade  9:    27    34    67   130   218   433   965  2642  4774  1746  (43.3% stay)
+  grade 10:    63    37    48    85   100   118   159   331  1160  3870  (64.8% stay)
+
+Case study, frozen model (9284 bank-quarters, 2022 Q4 to 2023 Q1):
+  cert 27330, 2023-03-31, PD 1.0000, grade 10, did not fail in horizon
+  cert 27010, 2022-12-31, PD 0.2161, grade 10, did not fail in horizon
+  cert 27330, 2022-12-31, PD 0.0596, grade 10, did not fail in horizon
+  cert 2359, 2022-12-31, PD 0.0364, grade 10, did not fail in horizon
+  cert 27332, 2023-03-31, PD 0.0333, grade 10, did not fail in horizon
+  cert 15311, 2023-03-31, PD 0.0295, grade 10, did not fail in horizon
+  cert 29379, 2023-03-31, PD 0.0293, grade 10, did not fail in horizon
+  cert 27332, 2022-12-31, PD 0.0248, grade 10, did not fail in horizon
+  cert 5676, 2022-12-31, PD 0.0232, grade 10, did not fail in horizon
+  cert 3639, 2023-03-31, PD 0.0214, grade 10, did not fail in horizon
+
+Limitations:
+  Output is an illustrative model on public FDIC data. It is not an IFRS 9 or regulatory rating.
+  Test window ends 2022 Q3; the case study quarters are kept out of every other set.
+  Tier 1 leverage and efficiency ratio units are provisional until checked against raw FDIC fields.
+  The securities-loss and uninsured-deposit case study test was NOT done: the FDIC fields are not loaded.
+  Grades come from validation data only, so the test result is not tuned to the test set.

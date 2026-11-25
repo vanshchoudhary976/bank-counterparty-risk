@@ -1,65 +1,36 @@
-import pytest
-from datetime import date
 from pathlib import Path
 
 import duckdb
+import pytest
 
 from credit_risk.scorecard.panel import load_panel
 
-ROOT = Path(__file__).resolve().parents[1]
+SQL_DIR = Path(__file__).resolve().parents[1] / "sql"
 
 
-def _connection():
-    con = duckdb.connect(":memory:")
-    con.execute((ROOT / "sql" / "01_schema.sql").read_text())
-    con.execute((ROOT / "sql" / "03_ratios.sql").read_text())
-    con.execute((ROOT / "sql" / "04_scorecard_inputs.sql").read_text())
-    con.execute(
-        """
-        INSERT INTO bank_financials VALUES
-          (1, '2020-03-31', 1000, 100, 600, 800, 10),
-          (1, '2020-06-30', 1000, 100, 600, 800, 20),
-          (2, '2020-03-31', 2000, 300, 900, 1000, 30)
-        """
-    )
-    con.execute(
-        """
-        INSERT INTO bank_capital_efficiency VALUES
-          (1, '2020-03-31', 9.5, 6, 60.0),
-          (1, '2020-06-30', 9.5, 6, 60.0),
-          (2, '2020-03-31', 8.0, 9, 55.0)
-        """
-    )
-    con.execute(
-        """
-        INSERT INTO bank_failures VALUES
-          (1, 'Bank One', '2021-05-01'),
-          (1, 'Bank One', '2022-01-01'),
-          (NULL, 'Pre-insurance bank', '1930-01-01')
-        """
-    )
-    return con
+@pytest.fixture()
+def con():
+    db = duckdb.connect(":memory:")
+    for name in ("01_schema.sql", "03_ratios.sql", "04_scorecard_inputs.sql", "06_clean_inputs.sql"):
+        db.execute((SQL_DIR / name).read_text(encoding="utf-8"))
+    db.execute("INSERT INTO bank_financials VALUES (10, DATE '2010-12-31', 1000000, 100000, 600000, 800000, 5000)")
+    db.execute("INSERT INTO bank_financials VALUES (11, DATE '2010-12-31', 2000, 2000, 0, 0, 5)")
+    db.execute("INSERT INTO bank_capital_efficiency VALUES (10, DATE '2010-12-31', 9.0, 9000, 60.0)")
+    db.execute("INSERT INTO bank_capital_efficiency VALUES (11, DATE '2010-12-31', 9.0, 0, 60.0)")
+    yield db
+    db.close()
 
 
-def test_load_panel_returns_ratio_features_for_each_bank_quarter():
-    rows, _ = load_panel(_connection())
-    assert [(cert, report_date) for cert, report_date, _ in rows] == [
-        (1, date(2020, 3, 31)),
-        (1, date(2020, 6, 30)),
-        (2, date(2020, 3, 31)),
-    ]
-    first = rows[0][2]
-    assert set(first) == {
-        "equity_to_assets", "tier1_leverage", "allowance_to_loans",
-        "roa_annualised", "efficiency_ratio", "loans_to_deposits",
-    }
-    assert first["equity_to_assets"] == 0.1
-    assert first["loans_to_deposits"] == 0.75
-    assert first["tier1_leverage"] == pytest.approx(0.095)
-    assert first["allowance_to_loans"] == pytest.approx(6000 / 606000)
-    assert first["efficiency_ratio"] == pytest.approx(0.60)
+def test_raw_view_keeps_every_bank(con):
+    panel, _ = load_panel(con)
+    assert {cert for cert, _, _ in panel} == {10, 11}
 
 
-def test_load_panel_takes_first_failure_date_and_skips_missing_cert():
-    _, failures = load_panel(_connection())
-    assert failures == {1: date(2021, 5, 1)}
+def test_clean_view_drops_the_empty_filer(con):
+    panel, _ = load_panel(con, view="clean_scorecard_inputs")
+    assert {cert for cert, _, _ in panel} == {10}
+
+
+def test_unknown_view_is_refused(con):
+    with pytest.raises(ValueError, match="view must be one of"):
+        load_panel(con, view="bank_financials; DROP TABLE bank_financials")

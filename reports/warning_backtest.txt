@@ -1,0 +1,94 @@
+ILLUSTRATIVE back-test. Thresholds are fixed in credit_risk/warning/rules.py before this run.
+Caveat: grades come from a scorecard fitted on 2005 to 2010, so the 2008 to 2010 part of the test is in-sample.
+Not run: non-current loans and securities unrealised losses (not loaded).
+
+2008 to 2012 failures: 474 failures in window
+  share flagged red at least 4 quarters ahead: 84%
+  survivors: 8041, with any red warning: 5324 (false alarm rate 66.2%)
+  miss: cert 3287: first red warning 1 quarters before failure
+  miss: cert 3510: first red warning 3 quarters before failure
+  miss: cert 3644: first red warning 2 quarters before failure
+  miss: cert 4077: first red warning 1 quarters before failure
+  miss: cert 4754: first red warning 3 quarters before failure
+  miss: cert 5431: first red warning 2 quarters before failure
+  miss: cert 6782: first red warning 1 quarters before failure
+  miss: cert 7213: first red warning 1 quarters before failure
+  miss: cert 11568: first red warning 2 quarters before failure
+  miss: cert 12736: first red warning 0 quarters before failure
+  miss: cert 13789: first red warning 2 quarters before failure
+  miss: cert 15814: first red warning 1 quarters before failure
+  miss: cert 16490: first red warning 1 quarters before failure
+  miss: cert 16500: first red warning 2 quarters before failure
+  miss: cert 18243: first red warning 3 quarters before failure
+  miss: cert 18708: first red warning 1 quarters before failure
+  miss: cert 18896: first red warning 3 quarters before failure
+  miss: cert 18923: no amber or red warning
+  miss: cert 19733: first red warning 1 quarters before failure
+  miss: cert 20078: first red warning 2 quarters before failure
+  miss: cert 20203: first red warning 3 quarters before failure
+  miss: cert 22574: first red warning 2 quarters before failure
+  miss: cert 22728: first red warning 0 quarters before failure
+  miss: cert 23124: first red warning 2 quarters before failure
+  miss: cert 23360: first red warning 0 quarters before failure
+  miss: cert 23595: first red warning 1 quarters before failure
+  miss: cert 25178: first red warning 2 quarters before failure
+  miss: cert 26535: first red warning 3 quarters before failure
+  miss: cert 26538: first red warning 2 quarters before failure
+  miss: cert 26870: first red warning 1 quarters before failure
+  miss: cert 27011: first red warning 0 quarters before failure
+  miss: cert 27374: first red warning 2 quarters before failure
+  miss: cert 28344: first red warning 1 quarters before failure
+  miss: cert 29730: first red warning 1 quarters before failure
+  miss: cert 29952: first red warning 2 quarters before failure
+  miss: cert 30763: first red warning 0 quarters before failure
+  miss: cert 30968: first red warning 1 quarters before failure
+  miss: cert 31559: first red warning 2 quarters before failure
+  miss: cert 32069: first red warning 3 quarters before failure
+  miss: cert 32247: first red warning 3 quarters before failure
+  miss: cert 32633: first red warning 1 quarters before failure
+  miss: cert 33025: first red warning 2 quarters before failure
+  miss: cert 33143: first red warning 2 quarters before failure
+  miss: cert 33318: amber only, never red
+  miss: cert 33824: first red warning 3 quarters before failure
+  miss: cert 33901: first red warning 0 quarters before failure
+  miss: cert 34043: first red warning 3 quarters before failure
+  miss: cert 34194: first red warning 1 quarters before failure
+  miss: cert 34301: first red warning 3 quarters before failure
+  miss: cert 34369: first red warning 3 quarters before failure
+  miss: cert 34396: first red warning 3 quarters before failure
+  miss: cert 34563: first red warning 2 quarters before failure
+  miss: cert 34571: first red warning 0 quarters before failure
+  miss: cert 34639: first red warning 3 quarters before failure
+  miss: cert 34820: first red warning 2 quarters before failure
+  miss: cert 34843: first red warning 3 quarters before failure
+  miss: cert 34881: first red warning 3 quarters before failure
+  miss: cert 34959: first red warning 1 quarters before failure
+  miss: cert 35175: first red warning 3 quarters before failure
+  miss: cert 35379: first red warning 2 quarters before failure
+  miss: cert 35399: first red warning 2 quarters before failure
+  miss: cert 35453: first red warning 2 quarters before failure
+  miss: cert 35461: first red warning 3 quarters before failure
+  miss: cert 57017: first red warning 2 quarters before failure
+  miss: cert 57342: first red warning 2 quarters before failure
+  miss: cert 57346: amber only, never red
+  miss: cert 57523: first red warning 1 quarters before failure
+  miss: cert 57558: first red warning 3 quarters before failure
+  miss: cert 57645: first red warning 2 quarters before failure
+  miss: cert 57654: first red warning 2 quarters before failure
+  miss: cert 57893: first red warning 3 quarters before failure
+  miss: cert 57930: first red warning 2 quarters before failure
+  miss: cert 57943: first red warning 3 quarters before failure
+  miss: cert 57961: first red warning 0 quarters before failure
+  miss: cert 58001: first red warning 2 quarters before failure
+  miss: cert 58032: first red warning 3 quarters before failure
+  miss: cert 58180: no amber or red warning
+  miss: cert 58241: first red warning 1 quarters before failure
+
+2023 cases: 5 failures in window
+  share flagged red at least 4 quarters ahead: 20%
+  survivors: 4755, with any red warning: 1874 (false alarm rate 39.4%)
+  miss: cert 24735: amber only, never red
+  miss: cert 25851: first red warning 3 quarters before failure
+  miss: cert 57053: amber only, never red
+  miss: cert 59017: first red warning 1 quarters before failure
+

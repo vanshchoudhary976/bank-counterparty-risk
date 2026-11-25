@@ -8,3 +8,4 @@ data/processed/*
 !data/processed/.gitkeep
 data/warehouse.duckdb
 data/warehouse.duckdb.wal
+reports/week4_test_scored.marker

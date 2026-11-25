@@ -1,0 +1,12 @@
+Run 2026-11-22T20:14:35
+Rolling out-of-time check, 2011 to 2013. Each year is scored by a model fitted only on earlier years.
+The 2014 to 2022 test set is not read.
+
+  year  train rows  train failures  test rows  test failures  model AUC  model Gini  model KS  baseline AUC
+  2011      198445            1524      29531            264      0.990       0.981     0.947         0.987
+  2012      227976            1788      28502            120      0.994       0.988     0.971         0.992
+  2013      256478            1908      27366             79      0.981       0.963     0.898         0.980
+
+Model AUC range: 0.981 to 0.994; baseline AUC range: 0.980 to 0.992
+Limitations: each test year has a small number of failures, so a single year is noisy.
+The result is an out-of-time check inside 2005 to 2013, not the blueprint test gate, which is recorded as not met.

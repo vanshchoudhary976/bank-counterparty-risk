@@ -20,11 +20,21 @@ RATIO_COLUMNS = (
 )
 
 
-def load_panel(con) -> tuple[list[tuple[int, date, dict]], dict[int, date]]:
-    """Return (rows, failures). rows are (cert, report_date, features) for every bank-quarter."""
+# Only these views may be read. The name goes into SQL text, so it must come from this list.
+ALLOWED_VIEWS = ("scorecard_inputs", "clean_scorecard_inputs")
+
+
+def load_panel(con, view: str = "scorecard_inputs") -> tuple[list[tuple[int, date, dict]], dict[int, date]]:
+    """Return (rows, failures). rows are (cert, report_date, features) for every bank-quarter in the view.
+
+    Week 3 reads the raw scorecard_inputs view. Week 4 reads clean_scorecard_inputs, where the drop rules
+    and the zero-efficiency rule are applied (docs/ratio_definitions.md).
+    """
+    if view not in ALLOWED_VIEWS:
+        raise ValueError(f"view must be one of {ALLOWED_VIEWS}, got {view!r}")
     select_list = ", ".join(f"s.{c}" for c in RATIO_COLUMNS)
     rows = con.execute(
-        f"SELECT s.cert, s.report_date, {select_list} FROM scorecard_inputs s ORDER BY s.cert, s.report_date"
+        f"SELECT s.cert, s.report_date, {select_list} FROM {view} s ORDER BY s.cert, s.report_date"
     ).fetchall()
     panel = [
         (cert, report_date, dict(zip(RATIO_COLUMNS, values)))

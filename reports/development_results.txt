@@ -1,0 +1,61 @@
+Run 2026-11-22T20:37:43
+Development and validation refit on cleaned inputs. Test set not read.
+
+Development: 198445 bank-quarters, 1524 failures
+Validation:  85399 bank-quarters, 463 failures
+Dropped for a missing ratio: development 1160, validation 496
+
+Rule 5 caps (development 1st and 99th percentiles):
+  equity_to_assets        0.05204    0.29408
+  tier1_leverage          0.05131    0.30438
+  allowance_to_loans      0.00203    0.05080
+  roa_annualised         -0.05175    0.03075
+  efficiency_ratio        0.32106    2.09025
+  loans_to_deposits       0.23954    1.43053
+
+Coefficients (standardised, winsorised inputs):
+  equity_to_assets     -1.4811
+  tier1_leverage       -1.5876
+  allowance_to_loans   +0.3298
+  roa_annualised       -0.5331
+  efficiency_ratio     +0.2350
+  loans_to_deposits    +0.6063
+  intercept            -8.0123
+Sign check: all match the expected direction
+
+Drop-one-year sensitivity (largest coefficient move, sign flips):
+  without 2005: max move 0.0435, sign flips: none
+  without 2006: max move 0.0363, sign flips: none
+  without 2007: max move 0.1008, sign flips: none
+  without 2008: max move 1.8711, sign flips: none
+  without 2009: max move 0.2952, sign flips: none
+  without 2010: max move 1.0249, sign flips: none
+
+Platt calibration (validation): slope 1.1518, intercept -0.3422
+
+Master scale cut-offs (validation): 0.00000, 0.00001, 0.00003, 0.00008, 0.00016, 0.00027, 0.00045, 0.00077, 0.00167
+
+Validation discrimination: AUC 0.990, Gini 0.981, KS 0.943
+
+PSI, development vs validation (below 0.10 stable, above 0.25 major shift):
+  equity_to_assets     0.0839
+  tier1_leverage       0.0710
+  allowance_to_loans   0.2539
+  roa_annualised       0.0369
+  efficiency_ratio     0.0362
+  loans_to_deposits    0.2428
+
+Master scale, validation: observed failure rate by grade (1 = safest):
+  grade  1:   6265 bank-quarters,    0 failures, rate 0.00000
+  grade  2:   9421 bank-quarters,    0 failures, rate 0.00000
+  grade  3:  11310 bank-quarters,    0 failures, rate 0.00000
+  grade  4:  12021 bank-quarters,    0 failures, rate 0.00000
+  grade  5:  11711 bank-quarters,    1 failures, rate 0.00009
+  grade  6:  10003 bank-quarters,    2 failures, rate 0.00020
+  grade  7:   7502 bank-quarters,    0 failures, rate 0.00000
+  grade  8:   5716 bank-quarters,    1 failures, rate 0.00017
+  grade  9:   4628 bank-quarters,    2 failures, rate 0.00043
+  grade 10:   6822 bank-quarters,  457 failures, rate 0.06699
+Grades order risk correctly: NO
+
+Missed failures: failures placed in grades 1 to 3 on validation: 0

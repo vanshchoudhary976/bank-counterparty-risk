@@ -1,29 +1,42 @@
-"""Blueprint split for Module B: development, validation and out-of-time test, by report year.
+"""Blueprint split for Module B: development, validation, out-of-time test and the 2023 case study.
 
-Dates come from the blueprint's Module B table:
+Dates come from the blueprint's Module B table, using report dates:
 - Development 2005 to 2010: fit the models.
 - Validation 2011 to 2013: tune, calibrate, choose the master scale.
-- Out-of-time test 2014 to 2022: final performance, used once (Week 4 only).
-The 2022 Q4 to 2023 Q1 case study is kept out of all three sets.
+- Out-of-time test 2014 to 2022 Q3: final performance, scored once (Week 4 only).
+- Case study 2022 Q4 to 2023 Q1: Silicon Valley Bank, Signature, First Republic. Kept out of every other set.
+The test window ends at 2022 Q3 so that the case study quarters do not overlap it.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from datetime import date
 
 from credit_risk.scorecard.labels import Observation
 
-DEVELOPMENT = (2005, 2010)
-VALIDATION = (2011, 2013)
-TEST = (2014, 2022)
+
+@dataclass(frozen=True)
+class Window:
+    label: str
+    start: date
+    end: date
+
+    def contains(self, report_date: date) -> bool:
+        return self.start <= report_date <= self.end
+
+
+DEVELOPMENT = Window("development (2005 to 2010)", date(2005, 1, 1), date(2010, 12, 31))
+VALIDATION = Window("validation (2011 to 2013)", date(2011, 1, 1), date(2013, 12, 31))
+TEST = Window("test (2014 to 2022 Q3)", date(2014, 1, 1), date(2022, 9, 30))
+CASE_STUDY = Window("case study (2022 Q4 to 2023 Q1)", date(2022, 12, 31), date(2023, 3, 31))
 MIN_EVENTS = 100  # blueprint: if a training window has fewer than about 100 events, widen it
 
 
 @dataclass(frozen=True)
 class SetCounts:
     name: str
-    start_year: int
-    end_year: int
+    label: str
     bank_quarters: int
     events: int
 
@@ -33,36 +46,35 @@ class BlueprintSplit:
     development: list[Observation]
     validation: list[Observation]
     test: list[Observation]
+    case_study: list[Observation]
 
     def counts(self) -> list[SetCounts]:
         rows = []
-        for name, items, (start, end) in (
+        for name, items, window in (
             ("development", self.development, DEVELOPMENT),
             ("validation", self.validation, VALIDATION),
             ("test", self.test, TEST),
+            ("case study", self.case_study, CASE_STUDY),
         ):
-            rows.append(SetCounts(name, start, end, len(items), sum(o.label for o in items)))
+            rows.append(SetCounts(name, window.label, len(items), sum(o.label for o in items)))
         return rows
 
 
 def blueprint_split(observations: list[Observation]) -> BlueprintSplit:
-    """Assign each observation to one of the three sets by its report year. Years outside them are dropped."""
-
-    def in_range(obs: Observation, bounds: tuple[int, int]) -> bool:
-        return bounds[0] <= obs.report_date.year <= bounds[1]
-
-    split = BlueprintSplit(
-        development=[o for o in observations if in_range(o, DEVELOPMENT)],
-        validation=[o for o in observations if in_range(o, VALIDATION)],
-        test=[o for o in observations if in_range(o, TEST)],
+    """Assign each observation to one set by its report date. Dates outside all four windows are dropped."""
+    return BlueprintSplit(
+        development=[o for o in observations if DEVELOPMENT.contains(o.report_date)],
+        validation=[o for o in observations if VALIDATION.contains(o.report_date)],
+        test=[o for o in observations if TEST.contains(o.report_date)],
+        case_study=[o for o in observations if CASE_STUDY.contains(o.report_date)],
     )
-    return split
 
 
 def check_every_set_has_rows(split: BlueprintSplit) -> None:
+    """The three modelling sets must each have rows. The case study is checked separately."""
     for counts in split.counts():
-        if counts.bank_quarters == 0:
-            raise ValueError(f"the {counts.name} set ({counts.start_year} to {counts.end_year}) has no rows")
+        if counts.name in ("development", "validation", "test") and counts.bank_quarters == 0:
+            raise ValueError(f"the {counts.name} set ({counts.label}) has no rows")
 
 
 def check_development_events(split: BlueprintSplit) -> None:
